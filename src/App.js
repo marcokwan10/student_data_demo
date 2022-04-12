@@ -7,6 +7,7 @@ function App() {
 	const [data, setData] = useState([]);
 	const [students, setStudents] = useState([]);
 	const [nameSearchTerm, setNameSearchTerm] = useState("");
+	const [tagSearchTerm, setTagSearchTerm] = useState("");
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -22,21 +23,37 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		const isIncluded = (student) => {
-			if (!nameSearchTerm) return true;
-			else if (
-				student.firstName.toLowerCase().includes(nameSearchTerm.toLowerCase()) ||
-				student.lastName.toLowerCase().includes(nameSearchTerm.toLowerCase())
-			) {
-				return true;
-			}
-		};
-		const filteredData = data.filter(isIncluded);
-		setStudents(filteredData);
-	}, [nameSearchTerm, data]);
+		if (!nameSearchTerm && !tagSearchTerm) {
+			setStudents(data);
+		} else {
+			const isIncluded = (student) => {
+				if (
+					nameSearchTerm &&
+					tagSearchTerm &&
+					(student.firstName.toLowerCase().includes(nameSearchTerm.toLowerCase()) ||
+						student.lastName.toLowerCase().includes(nameSearchTerm.toLowerCase()) ||
+						student?.tags?.some((tag) => tag.includes(tagSearchTerm.toLocaleLowerCase())))
+				) {
+					return true;
+				} else if (
+					nameSearchTerm &&
+					(student.firstName.toLowerCase().includes(nameSearchTerm.toLowerCase()) ||
+						student.lastName.toLowerCase().includes(nameSearchTerm.toLowerCase()))
+				) {
+					return true;
+				} else if (tagSearchTerm && student?.tags?.some((tag) => tag.includes(tagSearchTerm.toLocaleLowerCase()))) {
+					return true;
+				}
+			};
+			const filteredData = data.filter(isIncluded);
+			setStudents(filteredData);
+		}
+	}, [nameSearchTerm, tagSearchTerm, data]);
 
 	const addTags = (id, tag, e, clearTagsInput) => {
 		e.preventDefault();
+		clearTagsInput();
+		tag = tag.toLowerCase();
 		const studentsWithTag = students.map((student) => {
 			if (student.id === id) {
 				student["tags"] ? student["tags"].push(tag) : (student["tags"] = [tag]);
@@ -44,7 +61,6 @@ function App() {
 			return student;
 		});
 		setStudents(studentsWithTag);
-		clearTagsInput();
 	};
 
 	return (
@@ -53,6 +69,11 @@ function App() {
 				searchTerm={nameSearchTerm}
 				placeholder="Search by name"
 				setFilter={(e) => setNameSearchTerm(e.target.value)}
+			/>
+			<SearchBar
+				searchTerm={tagSearchTerm}
+				placeholder="Search by tag"
+				setFilter={(e) => setTagSearchTerm(e.target.value)}
 			/>
 			{students.map((student) => (
 				<Student studentInfo={student} key={student.id} addTags={addTags} />
