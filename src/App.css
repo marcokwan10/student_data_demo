@@ -4,8 +4,7 @@
   box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@100;200;300;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
 html {
   font-size: 100%;
 }
@@ -46,8 +45,8 @@ html {
   --textColor: var(--grey500);
 
   /* fonts */
-  --defaultFont: 'Barlow Semi Condensed',
-    sans-serif;
+  --defaultFont: 'Raleway',
+  sans-serif;
   --smallText: 0.875em;
 
   --borderRadius: 0.5rem;
@@ -172,10 +171,37 @@ ul {
 
 /* 
 ===========
+Search Bar
+===========
+*/
+.search-bar {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  background-color: inherit;
+  width: 97%;
+  border: none;
+  border-bottom: solid 3px var(--grey300);
+  padding: 1rem 1rem 0.75rem 1rem;
+  font-size: 1.5rem;
+}
+
+input::placeholder {
+  color: var(--grey300);
+}
+
+input:focus {
+  outline: none;
+  border-bottom: solid 3px var(--grey600);
+}
+
+/* 
+===========
 Student
 ===========
 */
-
 .student-container {
   max-width: 70rem;
   margin: 8vh auto;
