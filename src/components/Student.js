@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "../App.css";
 
-function Student({ studentInfo }) {
-	const { firstName, lastName, email, company, skill, grades, pic } = studentInfo;
+function Student({ studentInfo, addTags }) {
+	const { firstName, lastName, email, company, skill, grades, pic, id, tags } = studentInfo;
 	const [isExpanded, setIsExpanded] = useState(false);
+	const [tagInput, setTagInput] = useState("");
+
+	const clearTagsInput = () => setTagInput("");
 
 	return (
 		<div className="student">
@@ -27,6 +30,10 @@ function Student({ studentInfo }) {
 							))}
 						</div>
 					)}
+					<div className="tags">{tags && tags.map((tag) => <p key={uuidv4()}>{tag}</p>)}</div>
+					<form className="tagsBar" onSubmit={(e) => addTags(id, tagInput, e, clearTagsInput)}>
+						<input type="text" value={tagInput} placeholder="Add a tag" onChange={(e) => setTagInput(e.target.value)} />
+					</form>
 				</div>
 				{!isExpanded && (
 					<button className="expand" onClick={() => setIsExpanded(true)}>

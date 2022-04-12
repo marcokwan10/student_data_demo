@@ -35,6 +35,18 @@ function App() {
 		setStudents(filteredData);
 	}, [nameSearchTerm, data]);
 
+	const addTags = (id, tag, e, clearTagsInput) => {
+		e.preventDefault();
+		const studentsWithTag = students.map((student) => {
+			if (student.id === id) {
+				student["tags"] ? student["tags"].push(tag) : (student["tags"] = [tag]);
+			}
+			return student;
+		});
+		setStudents(studentsWithTag);
+		clearTagsInput();
+	};
+
 	return (
 		<div className="student-container">
 			<SearchBar
@@ -43,7 +55,7 @@ function App() {
 				setFilter={(e) => setNameSearchTerm(e.target.value)}
 			/>
 			{students.map((student) => (
-				<Student studentInfo={student} key={student.id} />
+				<Student studentInfo={student} key={student.id} addTags={addTags} />
 			))}
 		</div>
 	);

@@ -114,6 +114,21 @@ p {
     letter-spacing: var(--letter-spacing);
 }
 
+input {
+  background-color: inherit;
+  border: none;
+  border-bottom: solid 3px var(--grey300);
+}
+
+input::placeholder {
+  color: var(--grey300);
+}
+
+input:focus {
+  outline: none;
+  border-bottom: solid 3px var(--grey600);
+}
+
 /* 
 ===========
 Search Bar
@@ -124,22 +139,10 @@ Search Bar
   justify-content: center;
 }
 
-input {
-  background-color: inherit;
-  width: 97%;
-  border: none;
-  border-bottom: solid 3px var(--grey300);
+.search-bar input {
   padding: 1rem 1rem 0.75rem 1rem;
+  width: 97%;
   font-size: 1.5rem;
-}
-
-input::placeholder {
-  color: var(--grey300);
-}
-
-input:focus {
-  outline: none;
-  border-bottom: solid 3px var(--grey600);
 }
 
 /* 
@@ -207,11 +210,36 @@ Student
   padding-left: 1.5rem ;
 }
 
+.tags {
+  display: flex;
+  margin: 1rem 0 0 1.25rem;
+  overflow: scroll;
+}
+
+.tags p {
+  background-color: var(--grey300);
+  margin: 0 1.25rem 0 0;
+  padding: 0.75rem 1rem;
+  color: var(--grey900);
+  border-radius: var(--borderRadius);
+}
+
+.tagsBar input {
+  width: max-content;
+  padding: 0.5rem 0;
+  margin: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+}
+
 @media (min-width: 40rem) {
   .student-info {
     grid-column: 2 / span 3;
     text-align: left;
     flex-direction: row;
+  }
+
+  .tags {
+    max-width: 15rem;
   }
 
   .student img {
@@ -229,5 +257,9 @@ Student
   .student-container {
     max-height: 80vh;
     margin: 8vh auto;
+  }
+
+  .tags {
+    max-width: 40rem;
   }
 }
