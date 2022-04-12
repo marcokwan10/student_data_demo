@@ -5,24 +5,14 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 html {
   font-size: 100%;
 }
-
 /*16px*/
 
 :root {
   /* color */
-  --primary100: #ccdad9;
-  --primary200: #99b5b4;
-  --primary300: #66908e;
-  --primary400: #336b69;
-  --primary500: #004643;
-  --primary600: #003836;
-  --primary700: #003836;
-  --primary800: #001c1b;
-  --primary900: #000e0d;
-
   --grey100: #f1f5f9;
   --grey200: #e2e8f0;
   --grey300: #cbd5e1;
@@ -35,25 +25,15 @@ html {
 
   --black: #222;
   --white: #fff;
-  --red-light: #f8d7da;
-  --red-dark: #842029;
-  --green-light: #d1e7dd;
-  --green-dark: #0f5132;
 
   --backgroundColor: var(--grey200);
   --headerColor: var(--grey900);
   --textColor: var(--grey500);
 
   /* fonts */
-  --defaultFont: 'Raleway',
-  sans-serif;
-  --smallText: 0.875em;
-
+  --defaultFont: 'Raleway', sans-serif;
   --borderRadius: 0.5rem;
   --letter-spacing: 1px;
-  --transition: 0.3s ease-in-out all;
-  --max-width: 1120px;
-  --fixed-width: 600px;
 
   /* box shadow */
   --shadow-1: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -66,7 +46,6 @@ body {
   background: var(--backgroundColor);
   font-family: var(--defaultFont);
   font-weight: 400;
-  line-height: 1.75;
   color: var(--textColor);
 }
 
@@ -154,7 +133,7 @@ Student
   max-width: 70rem;
   max-height: 100vh;
   overflow: scroll;
-  background-color: whitesmoke;
+  background-color: var(--white);
   box-shadow: var(--shadow-4);
   border-radius: var(--borderRadius);
 }
@@ -185,6 +164,11 @@ Student
   margin: 0.75rem 1.5rem;
 }
 
+/* 
+===========================
+Student - expand grades
+===========================
+*/
 .expand {
   font-size: 3.5rem;
   color: var(--grey300);
@@ -210,6 +194,11 @@ Student
   padding-left: 1.5rem ;
 }
 
+/* 
+===========================
+Student - tags
+===========================
+*/
 .tags {
   display: flex;
   margin: 1rem 0 0 1.25rem;
