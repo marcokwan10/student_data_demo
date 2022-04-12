@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import "../App.css";
 
 function Student({ studentInfo }) {
@@ -20,11 +21,9 @@ function Student({ studentInfo }) {
 					{isExpanded && (
 						<div className="grades">
 							{grades.map((grade, idx) => (
-								<>
-									<p key={idx}>
-										Test {idx + 1}: <span>{grade}%</span>
-									</p>
-								</>
+								<p key={uuidv4()}>
+									Test {idx + 1}: <span>{grade}%</span>
+								</p>
 							))}
 						</div>
 					)}
