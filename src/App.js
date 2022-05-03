@@ -14,6 +14,7 @@ function App() {
 			try {
 				const response = await fetch("https://api.hatchways.io/assessment/students");
 				const { students } = await response.json();
+				console.log("👋 STUDENTS ------>", students);
 				setData(students);
 			} catch (err) {
 				console.error(err);
